@@ -1,0 +1,14 @@
+<div class="component">
+	<label
+        tuiProgressLabel
+    >
+        <span class="text">COMPLETED</span>
+        <span class="percent">{{ value }}%</span>
+    
+        <tui-progress-circle
+            size="xl"
+            [max]="100"
+            [value]="value"
+        />
+    </label>
+</div>

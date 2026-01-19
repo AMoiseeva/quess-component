@@ -1,0 +1,34 @@
+<div class="component">
+    <button
+        appearance="flat"
+        iconEnd="@tui.chevron-right"
+        size="m"
+        tuiButton
+        tuiDropdownAlign="right"
+        type="button"
+        [tuiAppearanceState]="open ? 'active' : null"
+        [tuiDropdown]="dropdown"
+        [tuiDropdownSided]="true"
+        [(tuiDropdownOpen)]="open"
+    >
+        taiga-ui
+    </button>
+</div>
+
+
+<ng-template #dropdown let-close>
+  <tui-data-list>
+    <tui-opt-group>
+      <button
+        *ngFor="let item of items"
+        tuiOption
+        new
+        type="button"
+        (click)="onClick()"
+      >
+        {{ item }}
+      </button>
+    </tui-opt-group>
+  </tui-data-list>
+</ng-template>
+

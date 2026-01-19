@@ -1,0 +1,116 @@
+<header class="header">
+  <h1 class="">
+    <img
+      src="https://raw.githubusercontent.com/taiga-family/taiga-ui/main/projects/demo/src/assets/images/taiga.svg"
+      alt="taiga ui logo"
+      width="28"
+      class="tui-space_left-4"
+    />
+    Taiga UI
+  </h1>
+
+  <img src="/assets/images/qr.png" alt="Logo" width="70px" class="qr">
+</header>
+
+
+<div class="stepper-container">
+  <div class="stepper-header">
+    <h2 class="tui-text_h1">Игра "Угадай компонент"</h2>
+
+    <div *ngIf="(currentPage < (totalPages) ) && (currentPage > 1)" class="tui-space_top-10">
+      <progress
+          [max]="totalPages-2"
+          tuiProgressBar
+          [value]="currentPage-1"
+      ></progress>
+      <p class="tui-text_body-xl tui-space_top-10">Какой UI паттерн изображен перед вами?</p>
+    </div>
+    	
+  </div>
+
+  <div class="stepper-content">
+    <!-- Quiz Component -->
+    <div class="quiz-components">
+      <app-start *ngIf="currentQuestion.component === 'start'"></app-start>
+      <app-radio *ngIf="currentQuestion.component === 'radio'"></app-radio>
+      <app-progress *ngIf="currentQuestion.component === 'progress'"></app-progress>
+      <app-tooltip *ngIf="currentQuestion.component === 'tooltip'"></app-tooltip>
+      <app-stepper *ngIf="currentQuestion.component === 'stepper'"></app-stepper>
+      <app-dropdown *ngIf="currentQuestion.component === 'dropdown'"></app-dropdown>
+      <app-paginator *ngIf="currentQuestion.component === 'paginator'"></app-paginator>
+      <app-toggle *ngIf="currentQuestion.component === 'toggle'"></app-toggle>
+      <app-accordion *ngIf="currentQuestion.component === 'accordion'"></app-accordion>
+      <app-carousel *ngIf="currentQuestion.component === 'carousel'"></app-carousel>
+      <app-select *ngIf="currentQuestion.component === 'select'"></app-select>
+      <app-finish *ngIf="currentQuestion.component === 'finish'" [rightAnswers]="rightAnswers" [totalQuestions]="totalPages-2"></app-finish>
+    </div>
+
+    <!-- Quiz Question -->
+    <div class="quiz-content">      
+      <!-- Answer Options -->
+      <div class="options-container">
+        @for (item of currentQuestion.options; track item) {
+          <button
+              appearance="secondary"
+              tuiButton
+              type="button"
+              (click)="submitAnswer(item)" 
+          >
+              {{ item }}
+          </button>
+        }
+      </div>
+
+    </div>
+  </div>
+
+  <div class="stepper-notification">
+      <tui-notification size="l" *ngIf="showResult" appearance="{{isCorrect ? 'success' : 'error'}}">
+        <div *ngIf="isCorrect">Правильно! Отличный ответ.</div>
+        <div *ngIf="!isCorrect">Неправильно. Правильный ответ: {{ currentQuestion.options[currentQuestion.correctAnswer] }}</div>
+      </tui-notification>   
+
+  </div>
+
+
+  <div class="stepper-navigation">
+
+   
+    
+    <button 
+      *ngIf="showResult && currentPage < (totalPages - 1)" 
+      (click)="goToNextPage()" 
+      tuiButton
+      type="button"
+      class="nav-button next-button">
+      Следующий
+    </button>
+    
+    <button 
+      *ngIf="currentPage === totalPages" 
+      (click)="resetQuiz()" 
+      tuiButton
+      type="button"
+      class="nav-button reset-button">
+      Начать заново
+    </button>
+    
+    <button 
+      *ngIf="currentPage === 1" 
+      (click)="start()" 
+      tuiButton
+      type="button"
+      class="nav-button reset-button">
+      Начать
+    </button>
+    
+    <button 
+      *ngIf="showResult && currentPage === (totalPages - 1)" 
+      (click)="finish()" 
+      tuiButton
+      type="button"
+      class="nav-button reset-button">
+      Завершить
+    </button>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="component">
+    <div class="title tui-text_h5">Core Team Taiga UI</div>
+
+    <div tuiCarouselButtons class="wrapper">
+        <button
+            iconStart="@tui.chevron-left"
+            tuiIconButton
+            type="button"
+            (click)="carousel.prev()"
+        >
+            Previous
+        </button>
+        <tui-carousel #carousel [duration]="4000" class="carousel">
+            <ng-container *ngFor="let item of items">
+            <div *tuiItem class="item">
+                <tui-avatar [src]="item.img" class="img" size="xl" />
+                <h2>{{ item.name }}</h2>
+                Core Team Taiga UI
+            </div>
+            </ng-container>
+        </tui-carousel>
+        <button
+            iconStart="@tui.chevron-right"
+            tuiIconButton
+            type="button"
+            (click)="carousel.next()"
+        >
+            Next
+        </button>
+    </div>
+</div>

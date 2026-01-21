@@ -20,7 +20,10 @@
   padding: 20px;
 
   .quiz-components {
-    flex-grow: 1;
+    min-height: 310px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .quiz-content {
@@ -43,7 +46,7 @@
 
 .stepper-navigation {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .stepper-notification {
@@ -60,4 +63,18 @@
   .qr {
     margin: 12px;
   }
+}
+
+.animate {
+  &.tui-enter {
+    animation-name: tuiFade, tuiSlide;
+  }
+}
+
+.right-answer {
+  background: var(--tui-status-positive-pale);
+}
+
+.wrong-answer {
+  background: var(--tui-status-negative-pale);
 }

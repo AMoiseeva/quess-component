@@ -1,8 +1,14 @@
 <div class="component">
     <p class="tui-text_body-xl">Лучший Angular UI Kit? 
         <tui-icon
+            icon="@tui.info"
             tuiHintDirection="right"
-            tuiTooltip="Конечно же Taiga UI"
+            [tuiHint]="tooltip"
+            [tuiHintManual]="true"
         />
     </p>
 </div>
+
+<ng-template #tooltip>
+    Конечно же Taiga UI
+</ng-template>

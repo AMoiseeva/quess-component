@@ -1,13 +1,20 @@
-<tui-textfield tuiChevron>
-    <input
-        placeholder="Выберите библиотеку"
-        tuiSelect
-        [(ngModel)]="value"
-    />
- 
-    <tui-data-list-wrapper
-        *tuiTextfieldDropdown
-        new
-        [items]="users"
-    />
-</tui-textfield>
+<div class="component">
+
+    <tui-textfield
+        class="textfield" 
+        tuiChevron
+        [tuiDropdownManual]="open"
+        tuiDropdownDirection="bottom"
+    >
+        <input
+            placeholder="Выберете библиотеку"
+            tuiSelectLike
+            tuiTextfield
+            [(ngModel)]="value"
+        />
+        <tui-data-list-wrapper
+            *tuiTextfieldDropdown
+            [items]="users"
+        />
+    </tui-textfield>
+</div>

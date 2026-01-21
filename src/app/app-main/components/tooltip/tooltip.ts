@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { TuiIcon } from '@taiga-ui/core';
-import { TuiTooltip } from '@taiga-ui/kit';
+import { TuiHint, TuiIcon } from '@taiga-ui/core';
 
 @Component({
   selector: 'app-tooltip',
-  imports: [TuiTooltip, TuiIcon],
+  imports: [TuiIcon, TuiHint],
   templateUrl: './tooltip.html',
   styleUrl: './tooltip.less',
 })

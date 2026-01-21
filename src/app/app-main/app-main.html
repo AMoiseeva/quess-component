@@ -9,13 +9,13 @@
     Taiga UI
   </h1>
 
-  <img src="/assets/images/qr.png" alt="Logo" width="70px" class="qr">
+  <img src="/quess-component/browser/assets/images/qr.png" alt="Logo" width="70px" class="qr">
 </header>
 
 
 <div class="stepper-container">
   <div class="stepper-header">
-    <h2 class="tui-text_h1">Игра "Угадай компонент"</h2>
+    <h2 class="tui-text_h1">Челлендж "Угадай паттерн"</h2>
 
     <div *ngIf="(currentPage < (totalPages) ) && (currentPage > 1)" class="tui-space_top-10">
       <progress
@@ -30,19 +30,24 @@
 
   <div class="stepper-content">
     <!-- Quiz Component -->
-    <div class="quiz-components">
-      <app-start *ngIf="currentQuestion.component === 'start'"></app-start>
-      <app-radio *ngIf="currentQuestion.component === 'radio'"></app-radio>
-      <app-progress *ngIf="currentQuestion.component === 'progress'"></app-progress>
-      <app-tooltip *ngIf="currentQuestion.component === 'tooltip'"></app-tooltip>
-      <app-stepper *ngIf="currentQuestion.component === 'stepper'"></app-stepper>
-      <app-dropdown *ngIf="currentQuestion.component === 'dropdown'"></app-dropdown>
-      <app-paginator *ngIf="currentQuestion.component === 'paginator'"></app-paginator>
-      <app-toggle *ngIf="currentQuestion.component === 'toggle'"></app-toggle>
-      <app-accordion *ngIf="currentQuestion.component === 'accordion'"></app-accordion>
-      <app-carousel *ngIf="currentQuestion.component === 'carousel'"></app-carousel>
-      <app-select *ngIf="currentQuestion.component === 'select'"></app-select>
-      <app-finish *ngIf="currentQuestion.component === 'finish'" [rightAnswers]="rightAnswers" [totalQuestions]="totalPages-2"></app-finish>
+     <div
+        tuiCardLarge
+        tuiAppearance="floating"
+      >
+        <div tuiAnimated class="animate" class="quiz-components">
+          <app-start tuiAnimated class="animate" *ngIf="currentQuestion.component === 'start'"></app-start>
+          <app-radio tuiAnimated class="animate" *ngIf="currentQuestion.component === 'radio'"></app-radio>
+          <app-progress tuiAnimated class="animate" *ngIf="currentQuestion.component === 'progress'"></app-progress>
+          <app-tooltip tuiAnimated class="animate" *ngIf="currentQuestion.component === 'tooltip'"></app-tooltip>
+          <app-stepper tuiAnimated class="animate" *ngIf="currentQuestion.component === 'stepper'"></app-stepper>
+          <app-dropdown tuiAnimated class="animate" *ngIf="currentQuestion.component === 'dropdown'"></app-dropdown>
+          <app-paginator tuiAnimated class="animate" *ngIf="currentQuestion.component === 'paginator'"></app-paginator>
+          <app-toggle tuiAnimated class="animate" *ngIf="currentQuestion.component === 'toggle'"></app-toggle>
+          <app-accordion tuiAnimated class="animate" *ngIf="currentQuestion.component === 'accordion'"></app-accordion>
+          <app-carousel tuiAnimated class="animate" *ngIf="currentQuestion.component === 'carousel'"></app-carousel>
+          <app-select  *ngIf="currentQuestion.component === 'select'"></app-select>
+          <app-finish tuiAnimated class="animate" *ngIf="currentQuestion.component === 'finish'" [rightAnswers]="rightAnswers" [totalQuestions]="totalPages-2"></app-finish>
+        </div>
     </div>
 
     <!-- Quiz Question -->
@@ -54,7 +59,10 @@
               appearance="secondary"
               tuiButton
               type="button"
-              (click)="submitAnswer(item)" 
+              (click)="submitAnswer(item)"
+              [class.right-answer]="isDisable ? item === currentQuestion.options[currentQuestion.correctAnswer] : false"
+              [class.wrong-answer]="isDisable ? ( item === answer && !isCorrect ) : false"
+              [tuiAppearanceState]="isDisable ? 'disabled' : null"
           >
               {{ item }}
           </button>

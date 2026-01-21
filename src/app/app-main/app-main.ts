@@ -18,6 +18,9 @@ import { Paginator } from './components/paginator/paginator';
 import { Accordion } from './components/accordion/accordion';
 import { Carousel } from './components/carousel/carousel';
 import { Select } from './components/select/select';
+import {TuiAppearance} from '@taiga-ui/core';
+import {TuiCardLarge} from '@taiga-ui/layout';
+import {TuiAnimated} from '@taiga-ui/cdk';
 
 interface QuizQuestion {
   component: string;
@@ -45,7 +48,10 @@ interface QuizQuestion {
     Paginator,
     Accordion,
     Carousel,
-    Select
+    Select,
+    TuiAppearance,
+    TuiCardLarge,
+    TuiAnimated
   ],
   templateUrl: './app-main.html',
   styleUrl: './app-main.less',
@@ -55,7 +61,9 @@ export class AppMain {
   rightAnswers = 0;
   showResult = false;
   isCorrect = false;
+  isDisable = false;
   answerControl = new FormControl<string | null>(null);
+  answer = '';
   
   quizQuestions: QuizQuestion[] = [
     {
@@ -65,53 +73,53 @@ export class AppMain {
     },
     {
       component: 'select',
-      options: ['Radio', 'Select', 'Checkbox', 'Button', 'Dialog', 'Tooltip', 'ProgressCircle', 'Stepper', 'Sheet', 'Dropdown', 'Paginator', 'Toggle', 'Accordion', 'Carousel', 'Breadcrumbs', 'Wysiwyg', 'Button', 'Input'],
-      correctAnswer: 1
-    },
-    {
-      component: 'carousel',
-      options: ['Radio', 'Select', 'Checkbox', 'Button', 'Dialog', 'Tooltip', 'ProgressCircle', 'Stepper', 'Sheet', 'Dropdown', 'Paginator', 'Toggle', 'Accordion', 'Carousel', 'Breadcrumbs', 'Wysiwyg', 'Button', 'Input'],
-      correctAnswer: 1
-    },
-    {
-      component: 'accordion',
-      options: ['Radio', 'Select', 'Checkbox', 'Button', 'Dialog', 'Tooltip', 'ProgressCircle', 'Stepper', 'Sheet', 'Dropdown', 'Paginator', 'Toggle', 'Accordion', 'Carousel', 'Breadcrumbs', 'Wysiwyg', 'Button', 'Input'],
-      correctAnswer: 1
-    },
-    {
-      component: 'toggle',
-      options: ['Radio', 'Select', 'Checkbox', 'Button', 'Dialog', 'Tooltip', 'ProgressCircle', 'Stepper', 'Sheet', 'Dropdown', 'Paginator', 'Toggle', 'Accordion', 'Carousel', 'Breadcrumbs', 'Wysiwyg', 'Button', 'Input'],
-      correctAnswer: 1
-    },
-    {
-      component: 'paginator',
-      options: ['Radio', 'Select', 'Checkbox', 'Button', 'Dialog', 'Tooltip', 'ProgressCircle', 'Stepper', 'Sheet', 'Dropdown', 'Paginator', 'Toggle', 'Accordion', 'Carousel', 'Breadcrumbs', 'Wysiwyg', 'Button', 'Input'],
-      correctAnswer: 1
-    },
-    {
-      component: 'dropdown',
-      options: ['Radio', 'Select', 'Checkbox', 'Button', 'Dialog', 'Tooltip', 'ProgressCircle', 'Stepper', 'Sheet', 'Dropdown', 'Paginator', 'Toggle', 'Accordion', 'Carousel', 'Breadcrumbs', 'Wysiwyg', 'Button', 'Input'],
-      correctAnswer: 1
-    },
-    {
-      component: 'stepper',
-      options: ['Radio', 'Select', 'Checkbox', 'Button', 'Dialog', 'Tooltip', 'ProgressCircle', 'Stepper', 'Sheet', 'Dropdown', 'Paginator', 'Toggle', 'Accordion', 'Carousel', 'Breadcrumbs', 'Wysiwyg', 'Button', 'Input'],
-      correctAnswer: 1
-    },
-    {
-      component: 'progress',
-      options: ['Radio', 'Select', 'Checkbox', 'Button', 'Dialog', 'Tooltip', 'ProgressCircle', 'Stepper', 'Sheet', 'Dropdown', 'Paginator', 'Toggle', 'Accordion', 'Carousel', 'Breadcrumbs', 'Wysiwyg', 'Button', 'Input'],
-      correctAnswer: 1
-    },
-    {
-      component: 'radio',
-      options: ['Radio', 'Select', 'Checkbox', 'Button', 'Dialog', 'Tooltip', 'ProgressCircle', 'Stepper', 'Sheet', 'Dropdown', 'Paginator', 'Toggle', 'Accordion', 'Carousel', 'Breadcrumbs', 'Wysiwyg', 'Button', 'Input'],
-      correctAnswer: 1
+      options: ['Accordion', 'Breadcrumbs', 'Button', 'Carousel', 'Checkbox', 'Dialog', 'Dropdown', 'Input', 'Paginator', 'ProgressCircle','Radio', 'Select', 'Sheet', 'Stepper', 'Toggle', 'Tooltip', 'Wysiwyg'],
+      correctAnswer: 11
     },
     {
       component: 'tooltip',
-      options: ['Radio', 'Select', 'Checkbox', 'Button', 'Dialog', 'Tooltip', 'ProgressCircle', 'Stepper', 'Sheet', 'Dropdown', 'Paginator', 'Toggle', 'Accordion', 'Carousel', 'Breadcrumbs', 'Wysiwyg', 'Button', 'Input'],
-      correctAnswer: 1
+      options: ['Accordion', 'Breadcrumbs', 'Button', 'Carousel', 'Checkbox', 'Dialog', 'Dropdown', 'Input', 'Paginator', 'ProgressCircle','Radio', 'Sheet', 'Stepper', 'Toggle', 'Tooltip', 'Wysiwyg'],
+      correctAnswer: 14
+    },
+    {
+      component: 'carousel',
+      options: ['Accordion', 'Breadcrumbs', 'Button', 'Carousel', 'Checkbox', 'Dialog', 'Dropdown', 'Input', 'Paginator', 'ProgressCircle','Radio', 'Sheet', 'Stepper', 'Toggle', 'Wysiwyg'],
+      correctAnswer: 3
+    },
+    {
+      component: 'progress',
+      options: ['Accordion', 'Breadcrumbs', 'Button', 'Checkbox', 'Dialog', 'Dropdown', 'Input', 'Paginator', 'ProgressCircle','Radio', 'Sheet', 'Stepper', 'Toggle', 'Wysiwyg'],
+      correctAnswer: 8
+    },
+    {
+      component: 'accordion',
+      options: ['Accordion', 'Breadcrumbs', 'Button', 'Checkbox', 'Dialog', 'Dropdown', 'Input', 'Paginator','Radio', 'Sheet', 'Stepper', 'Toggle', 'Wysiwyg'],
+      correctAnswer: 0
+    },
+    {
+      component: 'toggle',
+      options: ['Breadcrumbs', 'Button', 'Checkbox', 'Dialog', 'Dropdown', 'Input', 'Paginator','Radio', 'Sheet', 'Stepper', 'Toggle', 'Wysiwyg'],
+      correctAnswer: 10
+    },
+    {
+      component: 'paginator',
+      options: ['Breadcrumbs', 'Button', 'Checkbox', 'Dialog', 'Dropdown', 'Input', 'Paginator','Radio', 'Sheet', 'Stepper', 'Wysiwyg'],
+      correctAnswer: 6
+    },
+    {
+      component: 'dropdown',
+      options: ['Breadcrumbs', 'Button', 'Checkbox', 'Dialog', 'Dropdown', 'Input','Radio', 'Sheet', 'Stepper', 'Wysiwyg'],
+      correctAnswer: 4
+    },
+    {
+      component: 'stepper',
+      options: ['Breadcrumbs', 'Button', 'Checkbox', 'Dialog', 'Input','Radio', 'Sheet', 'Stepper', 'Wysiwyg'],
+      correctAnswer: 7
+    },
+    {
+      component: 'radio',
+      options: ['Breadcrumbs', 'Button', 'Checkbox', 'Dialog', 'Input','Radio', 'Sheet', 'Wysiwyg'],
+      correctAnswer: 5
     },
     {
       component: 'finish',
@@ -133,6 +141,8 @@ export class AppMain {
   }
 
   submitAnswer(answer: string): void {
+    this.isDisable = true;
+    this.answer = answer;
 
     if (!!answer && answer !== '') {
       this.isCorrect = answer === this.currentAnswer;
@@ -145,6 +155,8 @@ export class AppMain {
   }
 
   goToNextPage(): void {
+    this.isDisable = false;
+
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
       this.resetAnswerState();
@@ -159,6 +171,7 @@ export class AppMain {
 
   start(): void {
     this.currentPage++;
+    this.isDisable = false;
   }
 
   finish(): void {

@@ -11,7 +11,7 @@ import { TuiButton, TuiDataList, TuiDropdown } from '@taiga-ui/core';
 export class Dropdown {
     protected readonly items = ['Форкнуть', 'Законтрибьютить', 'Открыть доку', 'Поставить звезду'];
 
-    protected open = false;
+    protected open = true;
         
     protected onClick(): void {
     this.open = false;

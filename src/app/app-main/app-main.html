@@ -91,6 +91,7 @@
     
     <button 
       *ngIf="showResult && currentPage < (totalPages - 1)" 
+      size="l"
       (click)="goToNextPage()" 
       tuiButton
       type="button"
@@ -100,6 +101,7 @@
     
     <button 
       *ngIf="currentPage === totalPages" 
+      size="l"
       (click)="resetQuiz()" 
       tuiButton
       type="button"
@@ -109,6 +111,7 @@
     
     <button 
       *ngIf="currentPage === 1" 
+      size="l"
       (click)="start()" 
       tuiButton
       type="button"
@@ -118,6 +121,7 @@
     
     <button 
       *ngIf="showResult && currentPage === (totalPages - 1)" 
+      size="l"
       (click)="finish()" 
       tuiButton
       type="button"

@@ -18,16 +18,15 @@
 
 <div class="stepper-container">
   <div class="stepper-header">
-    <h2 class="tui-text_h1">Челлендж</h2>
-    <h2 class="tui-text_h1 title" >"Угадай паттерн"</h2>
+    <h2 class="tui-text_h3">Челлендж "Угадай паттерн"</h2>
 
-    <div *ngIf="(currentPage < (totalPages) ) && (currentPage > 1)" class="tui-space_top-10">
+    <div *ngIf="(currentPage < (totalPages) ) && (currentPage > 1)" class="tui-space_top-5">
       <progress
           [max]="totalPages-2"
           tuiProgressBar
           [value]="currentPage-1"
       ></progress>
-      <p class="tui-text_body-xl tui-space_top-10">Какой UI паттерн изображен перед вами?</p>
+      <p class="tui-text_body-xl tui-space_top-4">Какой UI паттерн изображен перед вами?</p>
     </div>
     	
   </div>

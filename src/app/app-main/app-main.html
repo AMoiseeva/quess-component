@@ -56,6 +56,7 @@
     <!-- Quiz Question -->
     <div class="quiz-content">      
       <!-- Answer Options -->
+      <p *ngIf="currentQuestion.options.length > 0" class="tui-text_body-xl tui-space_top-2 answers">Варианты ответов:</p>
       <div class="options-container">
         @for (item of currentQuestion.options; track item) {
           <button
